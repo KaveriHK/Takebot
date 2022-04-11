@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Takebot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- #1 Internal Style Sheet--> 
+    <link rel="stylesheet" href="./styles/style.css" />
+    
+     <!-- #2 Open Sans Google Font --> 
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'> 
+    
+    <!--#3 CSS Files-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css" />
+  </head>
+  <body>
+    <div class="chat-bar-collapsible">
+        <div class="chat-bar-container">
+          <button id="chat-button" type="button" class="collapsible">
+            <img class="header-icon" src="./assets/Bot_online.svg" alt=""/> 
+            <span class="takebot">Takeda Chatbot</span>
+            <span class="chat-bar-close" onclick="closeTakebot()">&times</span>
+          </button>
+          <div class="content">
+            <!-- Message Container -->
+            <div class="chat-container" id="chat-container">
+              <!--# BotUI Tag-->
+              <bot-ui></botui>
+            </div>
+          </div>
+          <div class="input-container">
+            <input type="text" id="user-input" onchange="userInput(this.value)"/>
+          </div>
+        </div>
+    </div>
+       <!--# Javascript Files-->
+       <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
+       <script src="./src/app.js"></script>
+  </body>
+</html>
