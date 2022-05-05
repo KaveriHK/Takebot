@@ -140,6 +140,11 @@ body {
   cursor: none;
 }
 
+.icon-delay {
+  position: relative;
+  bottom: 5px;
+}
+
 .human {
   background-color: #eeeeee !important;
 }
