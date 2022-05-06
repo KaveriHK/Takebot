@@ -32,4 +32,4 @@ var userResponsesPlaceholder = "Please type your responses here";
 var thankYouMsg =
   "Thank you for connecting with Takeda Chatbot!, Have a good day";
 var emailErrorMsg = "Please provide a valid email address";
-var sessionTimeout = "Session has been Timed Out!";
+var sessionTimeoutMsg = "Session has been Timed Out!";

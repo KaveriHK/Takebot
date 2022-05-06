@@ -15,3 +15,4 @@ var agentName;
 var agentAvailable = true;
 var inputType = "";
 var previousChatRequest = 0;
+var sessionTimeOut = false;

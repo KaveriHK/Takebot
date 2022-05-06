@@ -95,3 +95,20 @@ const emailValidation = (value) => {
     return true;
   }
 };
+
+const sessionTimeout = () => {
+  if (sessionTimeOut) {
+    userInfo = {
+      fName: "",
+      lName: "",
+      email: "",
+    };
+
+    medInfoToken = "";
+    chatSessionInfo = "";
+    agentName = "";
+    agentAvailable = true;
+    inputType = "";
+    previousChatRequest = 0;
+  }
+};
