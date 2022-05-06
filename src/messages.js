@@ -22,3 +22,14 @@ var nonWorkingHoursMsg =
 var nonWorkingHoursTemplate =
   "<div> Please come back later or explore <a class='med-info-link' href='https://www.oncologymedinfo.com/MedicalInformation' target='_blank'>www.oncologymedinfo.com</a></div>";
 var errorMsg = "Something went wrong!, please come back after some time...";
+var connectingMsg = "We are connecting you to our call centre agent.";
+var apologyMsg =
+  "Apology for the delay, can you please wait till the agents are available";
+var agentsNotAvailableTemplate =
+  "<div> All our live agents are currently busy, please come back later or explore <a class='med-info-link' href='https://www.oncologymedinfo.com/MedicalInformation' target='_blank'>www.oncologymedinfo.com</a></div>";
+var agentJoinedMsg = " our call centre agent, has joined the conversation.";
+var userResponsesPlaceholder = "Please type your responses here";
+var thankYouMsg =
+  "Thank you for connecting with Takeda Chatbot!, Have a good day";
+var emailErrorMsg = "Please provide a valid email address";
+var sessionTimeout = "Session has been Timed Out!";

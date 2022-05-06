@@ -46,12 +46,10 @@ const addAgentMsg = (content) => {
       type: "html",
       cssClass: "agent-name",
       content:
-        "<div class='agent-div'><p class='agent'>" +
-        agentInfo.name +
-        "<p></div>",
+        "<div class='agent-div'><p class='agent'>" + agentName + "<p></div>",
     })
     .then(() => {
-      takeBotMsg("bot-msg agent-msg", content, 0, false);
+      takeBotMsg("bot-msg agent-msg", content, 0, false, "text");
     });
 };
 
@@ -68,11 +66,32 @@ const revokeUserInputAction = () => {
   document.getElementById("user-input").style.display = "none";
   document.getElementsByClassName("input-container")[0].style.width = "100%";
   document.getElementById("user-input").placeholder = "";
+  document.getElementById("email-error").style.display = "none";
 };
 
 const getUserInfo = (value) => {
-  userInfo[inputType] = value;
-  console.log(userInfo);
+  userInfo[inputType] = value.trim();
   revokeUserInputAction();
-  addHumanMsg(value);
+  addHumanMsg(value.trim());
+};
+
+const liveChat = (value) => {
+  document.getElementById("user-input").value = "";
+  addHumanMsg(value.trim());
+  sendChatMessage(value.trim());
+};
+
+const emailValidation = (value) => {
+  var filter =
+    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (!filter.test(value)) {
+    document.getElementById("user-input").focus = true;
+    document.getElementById("email-error").innerHTML = emailErrorMsg;
+    document.getElementById("email-error").style.display = "block";
+    return false;
+  } else {
+    document.getElementById("email-error").innerHTML = "";
+    document.getElementById("email-error").style.display = "none";
+    return true;
+  }
 };

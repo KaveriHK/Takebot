@@ -35,12 +35,16 @@ const nonHealthcare = () => {
 const healthcare = () => {
   removeCursor();
   addHumanMsg("Yes");
-  setTimeout(() => {
-    takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
+  if (isWorkingHours) {
     setTimeout(() => {
-      userInputsAction("fName", firstNamePlaceholder);
-    }, 2000);
-  }, 1000);
+      takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
+      setTimeout(() => {
+        userInputsAction("fName", firstNamePlaceholder);
+      }, 2000);
+    }, 1000);
+  } else {
+    agentOffline();
+  }
 };
 
 const userInput = (value) => {
@@ -60,12 +64,13 @@ const userInput = (value) => {
       }, 2000);
       break;
     case "email":
-      getUserInfo(value);
-      getToken();
+      if (emailValidation(value)) {
+        getUserInfo(value);
+        getToken();
+      }
       break;
     case "salesorceMsg":
-      addHumanMsg(value);
-      sendChatMessage(value);
+      liveChat(value);
       break;
   }
 };
@@ -85,66 +90,56 @@ const readMessages = (messages) => {
 const agentMsgCase = (type, msg) => {
   switch (type) {
     case "ChatRequestFail":
-      if (msg.reason === "Unavailable") {
+      if (msg.reason === "Unavailable" && previousChatRequest === 0) {
         agentAvailable = false;
         agentOffline();
+      } else {
+        if (previousChatRequest === 1) {
+          takeBotIconMsg("bot-msg icon-delay", apologyMsg, 500, true, "text");
+          getToken();
+        } else {
+          takeBotIconMsg(
+            "bot-msg icon-delay",
+            agentsNotAvailableTemplate,
+            500,
+            true,
+            "html"
+          );
+        }
       }
       break;
     case "ChatRequestSuccess":
       agentOnline();
       break;
     case "ChatEstablished":
-      agentInfo.name = msg.name;
-      takeBotMsg(
-        "bot-msg hcp",
-        msg.name + " our call centre agent, has joined the conversation.",
-        0,
-        false
-      );
-      document.getElementById("user-input").placeholder =
-        "Please type your responses here";
+      agentName = msg.name;
+      takeBotMsg("bot-msg hcp", agentName + agentJoinedMsg, 500, true, "text");
+      setTimeout(() => {
+        userInputsAction("salesorceMsg", userResponsesPlaceholder);
+      }, 1000);
       break;
     case "ChatMessage":
       addAgentMsg(msg.text);
       break;
     case "ChatEnded":
-      iconMsgWithNodelay(
-        "Thank you for connecting with Takeda Chatbot!, Have a good day"
-      );
+      revokeUserInputAction();
+      takeBotIconMsg("bot-msg icon-delay", thankYouMsg, 500, true, "text");
       break;
   }
 };
 
 const agentOnline = () => {
-  inputType = "salesorceMsg";
-  iconMsgWithNodelay("We are connecting you to our call centre agent.");
+  if (previousChatRequest === 0) {
+    takeBotIconMsg("bot-msg icon-delay", connectingMsg, 500, true, "text");
+  }
+  previousChatRequest = previousChatRequest + 1;
 };
 
 const agentOffline = () => {
-  takeBotIcon();
+  takeBotIconMsg("bot-msg icon-delay", nonWorkingHoursMsg, 500, true, "text");
   setTimeout(() => {
-    takeBotMsg(
-      "bot-msg",
-      "Our Live agents are currently unavailable. Live agents are only available from 8AM - 6PM EST.",
-      0,
-      false
-    );
-    setTimeout(() => {
-      botui.message.bot({
-        cssClass: "bot-msg hcp",
-        type: "html",
-        content:
-          "<div>Please come back later or explore <a class='med-info-link' href='https://www.oncologymedinfo.com/MedicalInformation' target='_blank'>www.oncologymedinfo.com</a></div>",
-      });
-    }, 1000);
-    // takeBotMsg(
-    //   "bot-msg hcp",
-    //   "Select any of the topic below to continue",
-    //   0,
-    //   false
-    // );
-    // addButton(topics, 0, "btn-list", "keyword");
-  }, 1000);
+    takeBotMsg("bot-msg hcp", nonWorkingHoursTemplate, 500, true, "html");
+  }, 2000);
 };
 
 revokeUserInputAction();

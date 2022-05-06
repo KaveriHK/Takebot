@@ -107,7 +107,6 @@ var payload = {
       transcriptFields: ["caseOrigin__c"],
       displayToAgent: true,
     },
-
     {
       label: "Subject",
       value: "ChatCase",

@@ -66,7 +66,19 @@ const createChatInitRequest = async () => {
   headers.append("sessionkey", chatSessionInfo.key);
 
   const createSessionURL = new URL(baseURL + "ChatInitRequest");
-
+  payload.visitorName = userInfo["fName"] + " " + userInfo["lName"];
+  (payload.sessionId = chatSessionInfo.id),
+    payload.prechatDetails.forEach((detail) => {
+      if (detail.label === "FirstName") {
+        detail.value = userInfo["fName"];
+      }
+      if (detail.label === "LastName") {
+        detail.value = userInfo["lName"];
+      }
+      if (detail.label === "Email") {
+        detail.value = userInfo["email"];
+      }
+    });
   try {
     const chatReq = await fetch(createSessionURL, {
       method: "POST",

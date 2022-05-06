@@ -11,7 +11,7 @@ var userInfo = {
 var isWorkingHours = true;
 var medInfoToken = "";
 var chatSessionInfo = "";
-var agentInfo = {};
+var agentName;
 var agentAvailable = true;
 var inputType = "";
 var previousChatRequest = 0;
