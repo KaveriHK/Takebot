@@ -9,7 +9,7 @@ const setFormData = (list) => {
   return formData;
 };
 
-const getToken = async () => {
+const getToken = async (checkWorkingHours = false) => {
   const headers = new Headers();
   const formBody = setFormData(credentials);
   headers.append("Content-Type", "application/x-www-form-urlencoded");
@@ -22,10 +22,43 @@ const getToken = async () => {
     const res = await tokenJSON.json();
     if (res && res.access_token) {
       medInfoToken = res.access_token;
-      createChatSession();
+      if (checkWorkingHours) {
+        getAgentAvaialbality();
+      } else {
+        createChatSession();
+      }
     } else {
       takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
       return;
+    }
+  } catch (error) {
+    takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+    return;
+  }
+};
+
+const getAgentAvaialbality = async () => {
+  const agentAvailabilityURL = new URL(baseURL + "CheckAgentAvailability");
+  const headers = new Headers();
+  headers.append("Authorization", "Bearer " + medInfoToken);
+  try {
+    const agentAvailable = await fetch(agentAvailabilityURL, {
+      method: "GET",
+      headers: headers,
+    });
+    const agentAvailableJSON = await agentAvailable.json();
+    isWorkingHours = agentAvailableJSON.isWorkingHours;
+    //console.log(agentAvailableJSON);
+    //isWorkingHours = true;
+    if (isWorkingHours) {
+      setTimeout(() => {
+        takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
+        setTimeout(() => {
+          userInputsAction("fName", firstNamePlaceholder);
+        }, 2000);
+      }, 1000);
+    } else {
+      agentOffline();
     }
   } catch (error) {
     takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");

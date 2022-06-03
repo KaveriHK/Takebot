@@ -35,16 +35,7 @@ const nonHealthcare = () => {
 const healthcare = () => {
   removeCursor();
   addHumanMsg("Yes");
-  if (isWorkingHours) {
-    setTimeout(() => {
-      takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
-      setTimeout(() => {
-        userInputsAction("fName", firstNamePlaceholder);
-      }, 2000);
-    }, 1000);
-  } else {
-    agentOffline();
-  }
+  getToken(true);
 };
 
 const userInput = (value) => {
@@ -66,7 +57,7 @@ const userInput = (value) => {
     case "email":
       if (emailValidation(value)) {
         getUserInfo(value);
-        getToken();
+        getToken(false);
       }
       break;
     case "salesorceMsg":
@@ -96,7 +87,7 @@ const agentMsgCase = (type, msg) => {
       } else {
         if (previousChatRequest === 1) {
           takeBotIconMsg("bot-msg icon-delay", apologyMsg, 500, true, "text");
-          getToken();
+          getToken(false);
         } else {
           takeBotIconMsg(
             "bot-msg icon-delay",

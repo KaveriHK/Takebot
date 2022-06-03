@@ -18,7 +18,7 @@ var lastNamePlaceholder = "Please enter you Last Name here";
 var emailMsg = "Please provide your Email";
 var emailMsgPlaceholder = "Please enter you email here";
 var nonWorkingHoursMsg =
-  "Our Live agents are currently unavailable. Live agents are only available from 8AM - 6PM EST.";
+  "Our Live agents are currently unavailable. Live agents are only available from 8AM - 6PM EST on Working days.";
 var nonWorkingHoursTemplate =
   "<div> Please come back later or explore <a class='med-info-link' href='https://www.oncologymedinfo.com/MedicalInformation' target='_blank'>www.oncologymedinfo.com</a></div>";
 var errorMsg = "Something went wrong!, please come back after some time...";
