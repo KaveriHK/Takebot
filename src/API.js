@@ -47,9 +47,7 @@ const getAgentAvaialbality = async () => {
       headers: headers,
     });
     const agentAvailableJSON = await agentAvailable.json();
-    isWorkingHours = agentAvailableJSON.isWorkingHours;
-    //console.log(agentAvailableJSON);
-    //isWorkingHours = true;
+    isWorkingHours = agentAvailableJSON.IsAgentWorking;
     if (isWorkingHours) {
       setTimeout(() => {
         takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
