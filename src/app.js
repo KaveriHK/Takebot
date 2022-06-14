@@ -13,6 +13,9 @@ const removeCursor = () => {
   var btn = document.getElementById("hcp");
   var btn1 = document.getElementById("hcp1");
   var div = document.getElementById("btn-div");
+  btn.disabled = true;
+  btn1.disabled = true;
+  div.disabled = true;
   btn.classList.add("newClass");
   btn1.classList.add("newClass");
   div.classList.add("newClass");
