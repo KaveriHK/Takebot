@@ -245,3 +245,15 @@ body {
   color: red;
   font-size: 12px;
 }
+
+@media only screen and (max-width: 500px) {
+  .chat-bar-container {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .chat-bar-container {
+    width: 100%;
+  }
+}
