@@ -56,6 +56,7 @@ function fnIdleTimer() {
       revokeUserInputAction();
       sessionTimeout();
       clearInterval(timer);
+      removeCursor();
       sessionTimeOut = true;
     }
   }

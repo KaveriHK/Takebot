@@ -6,17 +6,19 @@ body {
   font-family: "Open Sans";
 }
 
+/** Done **/
 .chat-bar-collapsible {
   position: fixed;
   bottom: 15px;
   right: 50px;
 }
-
+/** Done **/
 .chat-bar-container {
   width: 429px;
   height: 499px;
 }
 
+/** Done **/
 .collapsible {
   background: #da5283 0% 0% no-repeat padding-box;
   box-shadow: 0px 2px 6px #0000004d;
@@ -31,10 +33,12 @@ body {
   border: none;
 }
 
+/** Done **/
 .header-icon {
   padding: 5px;
 }
 
+/** Done **/
 .takebot {
   text-align: left;
   letter-spacing: 0px;
@@ -47,6 +51,7 @@ body {
   font-size: 20px;
 }
 
+/** Done **/
 .chat-bar-close {
   float: right;
   font-size: 30px;
@@ -54,6 +59,7 @@ body {
   cursor: pointer;
 }
 
+/** Done **/
 .content {
   /* overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -65,12 +71,14 @@ body {
   /* overflow-y: auto; */
 }
 
+/** Done **/
 .botui-container {
   max-height: 350px;
   background: #eeeeee !important;
   opacity: 1;
 }
 
+/** Done **/
 .img-msg {
   margin: 0 !important;
   padding: 0 !important;
@@ -78,18 +86,22 @@ body {
   left: -18px !important;
 }
 
+/** Done **/
 .img-msg > div > div {
   background-color: unset !important;
 }
 
+/** Done **/
 .img-msg > .loading {
   margin: 5px !important;
 }
 
+/** Done **/
 .bot-msg {
   margin: 0 !important;
 }
 
+/** Done **/
 .bot-msg > div > div {
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 3px #0000001a;
@@ -97,13 +109,17 @@ body {
   opacity: 1;
 }
 
+/** Done **/
 .dot {
   background-color: #da5283 !important;
 }
 
+/** Done **/
 .loading {
   background-color: #ffffff !important;
 }
+
+/** Done **/
 .bot-msg > div > div > span {
   text-align: left !important;
   letter-spacing: 0px !important;
@@ -117,10 +133,12 @@ body {
   padding-top: 10px;
 }
 
+/** Done **/
 .hcp {
   padding: 10px 10px 10px 0px;
 }
 
+/** Done **/
 .btn-cls {
   background: #da5283 0% 0% no-repeat padding-box;
   opacity: 1;
@@ -136,19 +154,23 @@ body {
   cursor: pointer;
 }
 
+/** Done **/
 .newClass {
   cursor: none;
 }
 
+/** Done **/
 .icon-delay {
   position: relative;
   bottom: 5px;
 }
 
+/** Done **/
 .human {
   background-color: #eeeeee !important;
 }
 
+/** Done **/
 .you {
   text-align: right;
   letter-spacing: 0px;
@@ -157,6 +179,8 @@ body {
   font-size: 12px;
   margin: 0%;
 }
+
+/** Done **/
 .agent {
   text-align: left;
   letter-spacing: 0px;
@@ -164,6 +188,8 @@ body {
   opacity: 1;
   font-size: 12px;
 }
+
+/** Done **/
 .human-msg {
   background: #da5283 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 3px #0000001a;
@@ -172,6 +198,7 @@ body {
   padding: 10px 20px;
 }
 
+/** Done **/
 .human-text {
   text-align: left;
   letter-spacing: 0px;
@@ -180,6 +207,7 @@ body {
   font-size: 14px;
 }
 
+/** Done **/
 .med-info-link {
   color: #da5283;
 }
@@ -200,31 +228,36 @@ body {
   opacity: 1;
 }
 
+/** Done **/
 .agent-name > div > div {
   background: none;
   margin: 0;
   padding: 0px;
 }
+/** Done **/
 .agent-div {
   position: relative;
   top: 10px;
 }
-
+/** Done **/
 .agent-name {
   padding: 0px;
   margin: 0px !important;
 }
 
+/** Done **/
 .agent {
   margin: 0px;
 }
 
+/** Done **/
 .input-container {
   width: 98%;
   height: 10%;
   background-color: #ffff;
 }
 
+/** Done **/
 .input-container > input {
   height: 100%;
   width: 99.2%;
@@ -237,10 +270,12 @@ body {
   padding-left: 10px;
 }
 
+/** Done **/
 .input-container > input:focus {
   outline: none;
 }
 
+/** Done **/
 #email-error {
   color: red;
   font-size: 12px;
