@@ -5,7 +5,7 @@ const takeBotIcon = () => {
     delay: 1000,
     loading: true,
     type: "html",
-    cssClass: "img-msg",
+    cssClass: "takeda-mi-chatbot-img-msg",
     content: "<img src='./assets/Bot_.svg' alt='' height='38px' width='38px'/>",
   });
 };
@@ -34,7 +34,7 @@ const addHumanMsg = (content) => {
     human: true,
     type: "html",
     content:
-      "<div class='human-div'><p class='you'>You</p><div class='human-msg'><span class='human-text'>" +
+      "<div class='takeda-mi-chatbot-human-div'><p class='takeda-mi-chatbot-you'>You</p><div class='takeda-mi-chatbot-human-msg'><span class='takeda-mi-chatbot-human-text'>" +
       content +
       "<span></div></div>",
   });
@@ -44,29 +44,41 @@ const addAgentMsg = (content) => {
   botui.message
     .add({
       type: "html",
-      cssClass: "agent-name",
+      cssClass: "takeda-mi-chatbot-agent-name",
       content:
-        "<div class='agent-div'><p class='agent'>" + agentName + "<p></div>",
+        "<div class='takeda-mi-chatbot-agent-div'><p class='takeda-mi-chatbot-agent'>" +
+        agentName +
+        "<p></div>",
     })
     .then(() => {
-      takeBotMsg("bot-msg agent-msg", content, 0, false, "text");
+      takeBotMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-agent-msg",
+        content,
+        0,
+        false,
+        "text"
+      );
     });
 };
 
 const userInputsAction = (inType, placeholderText) => {
   inputType = inType;
-  document.getElementById("user-input").style.display = "block";
-  document.getElementsByClassName("input-container")[0].style.width = "98%";
-  document.getElementById("user-input").placeholder = placeholderText;
+  document.getElementById("takeda-mi-chatbot-user-input").style.display =
+    "block";
+  //document.getElementsByClassName("input-container")[0].style.width = "98%";
+  document.getElementById("takeda-mi-chatbot-user-input").placeholder =
+    placeholderText;
 };
 
 const revokeUserInputAction = () => {
-  document.getElementById("user-input").value = "";
+  document.getElementById("takeda-mi-chatbot-user-input").value = "";
   inputType = "";
-  document.getElementById("user-input").style.display = "none";
-  document.getElementsByClassName("input-container")[0].style.width = "100%";
-  document.getElementById("user-input").placeholder = "";
-  document.getElementById("email-error").style.display = "none";
+  document.getElementById("takeda-mi-chatbot-user-input").style.display =
+    "none";
+  //document.getElementsByClassName("input-container")[0].style.width = "100%";
+  document.getElementById("takeda-mi-chatbot-user-input").placeholder = "";
+  document.getElementById("takeda-mi-chatbot-email-error").style.display =
+    "none";
 };
 
 const getUserInfo = (value) => {
@@ -76,7 +88,7 @@ const getUserInfo = (value) => {
 };
 
 const liveChat = (value) => {
-  document.getElementById("user-input").value = "";
+  document.getElementById("takeda-mi-chatbot-user-input").value = "";
   addHumanMsg(value.trim());
   sendChatMessage(value.trim());
 };
@@ -85,13 +97,16 @@ const emailValidation = (value) => {
   var filter =
     /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if (!filter.test(value)) {
-    document.getElementById("user-input").focus = true;
-    document.getElementById("email-error").innerHTML = emailErrorMsg;
-    document.getElementById("email-error").style.display = "block";
+    document.getElementById("takeda-mi-chatbot-user-input").focus = true;
+    document.getElementById("takeda-mi-chatbot-email-error").innerHTML =
+      emailErrorMsg;
+    document.getElementById("takeda-mi-chatbot-email-error").style.display =
+      "block";
     return false;
   } else {
-    document.getElementById("email-error").innerHTML = "";
-    document.getElementById("email-error").style.display = "none";
+    document.getElementById("takeda-mi-chatbot-email-error").innerHTML = "";
+    document.getElementById("takeda-mi-chatbot-email-error").style.display =
+      "none";
     return true;
   }
 };

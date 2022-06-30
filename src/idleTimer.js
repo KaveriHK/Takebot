@@ -1,5 +1,5 @@
 window.onload = (event) => {
-  console.log("page is fully loaded");
+  //console.log("page is fully loaded");
   fnIdleTimer();
 };
 
@@ -47,7 +47,7 @@ function fnIdleTimer() {
       //alert('Your screen is inactive state for a long..!' + $("input[name=__RequestVerificationToken]").val());
       //window.location.reload();
       takeBotIconMsg(
-        "bot-msg icon-delay",
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
         sessionTimeoutMsg,
         500,
         true,
@@ -56,6 +56,7 @@ function fnIdleTimer() {
       revokeUserInputAction();
       sessionTimeout();
       clearInterval(timer);
+      removeCursor();
       sessionTimeOut = true;
     }
   }

@@ -1,6 +1,6 @@
 /*** Variable declaration for Takeda Chat bot */
 
-var botui = new BotUI("chat-container");
+var botui = new BotUI("takeda-mi-chatbot-chat-container");
 
 var userInfo = {
   fName: "",

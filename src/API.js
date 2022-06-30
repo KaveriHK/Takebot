@@ -28,11 +28,23 @@ const getToken = async (checkWorkingHours = false) => {
         createChatSession();
       }
     } else {
-      takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+      takeBotIconMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+        errorMsg,
+        500,
+        true,
+        "text"
+      );
       return;
     }
   } catch (error) {
-    takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      errorMsg,
+      500,
+      true,
+      "text"
+    );
     return;
   }
 };
@@ -48,9 +60,16 @@ const getAgentAvaialbality = async () => {
     });
     const agentAvailableJSON = await agentAvailable.json();
     isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    //isWorkingHours = true;
     if (isWorkingHours) {
       setTimeout(() => {
-        takeBotIconMsg("bot-msg icon-delay", firstNameMsg, 500, true, "text");
+        takeBotIconMsg(
+          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+          firstNameMsg,
+          500,
+          true,
+          "text"
+        );
         setTimeout(() => {
           userInputsAction("fName", firstNamePlaceholder);
         }, 2000);
@@ -59,7 +78,13 @@ const getAgentAvaialbality = async () => {
       agentOffline();
     }
   } catch (error) {
-    takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      errorMsg,
+      500,
+      true,
+      "text"
+    );
     return;
   }
 };
@@ -86,7 +111,13 @@ const createChatSession = async () => {
     createChatInitRequest();
     messagePoll();
   } catch (error) {
-    takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      errorMsg,
+      500,
+      true,
+      "text"
+    );
     return;
   }
 };
@@ -118,7 +149,13 @@ const createChatInitRequest = async () => {
     });
     chatReq1 = await chatReq.json();
   } catch (error) {
-    takeBotIconMsg("bot-msg icon-delay", errorMsg, 500, true, "text");
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      errorMsg,
+      500,
+      true,
+      "text"
+    );
     return;
   }
 };

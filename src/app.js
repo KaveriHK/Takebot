@@ -1,24 +1,36 @@
 const startChat = () => {
-  takeBotIconMsg("bot-msg icon-delay", welcomeMsg, 500, true, "text");
+  takeBotIconMsg(
+    "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+    welcomeMsg,
+    500,
+    true,
+    "text"
+  );
   verifyHCP();
 };
 
 const verifyHCP = () => {
   setTimeout(() => {
-    takeBotMsg("bot-msg hcp", verificationTemplate, 500, true, "html");
+    takeBotMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp",
+      verificationTemplate,
+      500,
+      true,
+      "html"
+    );
   }, 2000);
 };
 
 const removeCursor = () => {
-  var btn = document.getElementById("hcp");
-  var btn1 = document.getElementById("hcp1");
-  var div = document.getElementById("btn-div");
+  var btn = document.getElementById("takeda-mi-chatbot-hcp");
+  var btn1 = document.getElementById("takeda-mi-chatbot-hcp1");
+  var div = document.getElementById("takeda-mi-chatbot-btn-div");
   btn.disabled = true;
   btn1.disabled = true;
   div.disabled = true;
-  btn.classList.add("newClass");
-  btn1.classList.add("newClass");
-  div.classList.add("newClass");
+  btn.classList.add("takeda-mi-chatbot-cursor");
+  btn1.classList.add("takeda-mi-chatbot-cursor");
+  div.classList.add("takeda-mi-chatbot-cursor");
 };
 
 const nonHealthcare = () => {
@@ -26,7 +38,7 @@ const nonHealthcare = () => {
   addHumanMsg("No");
   setTimeout(() => {
     takeBotIconMsg(
-      "bot-msg icon-delay",
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
       nonHealthcareTemplate,
       500,
       true,
@@ -45,14 +57,26 @@ const userInput = (value) => {
   switch (inputType) {
     case "fName":
       getUserInfo(value);
-      takeBotIconMsg("bot-msg icon-delay", lastNameMsg, 500, true, "text");
+      takeBotIconMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+        lastNameMsg,
+        500,
+        true,
+        "text"
+      );
       setTimeout(() => {
         userInputsAction("lName", lastNamePlaceholder);
       }, 2000);
       break;
     case "lName":
       getUserInfo(value);
-      takeBotIconMsg("bot-msg icon-delay", emailMsg, 500, true, "text");
+      takeBotIconMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+        emailMsg,
+        500,
+        true,
+        "text"
+      );
       setTimeout(() => {
         userInputsAction("email", emailMsgPlaceholder);
       }, 2000);
@@ -89,11 +113,17 @@ const agentMsgCase = (type, msg) => {
         agentOffline();
       } else {
         if (previousChatRequest === 1) {
-          takeBotIconMsg("bot-msg icon-delay", apologyMsg, 500, true, "text");
+          takeBotIconMsg(
+            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+            apologyMsg,
+            500,
+            true,
+            "text"
+          );
           getToken(false);
         } else {
           takeBotIconMsg(
-            "bot-msg icon-delay",
+            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
             agentsNotAvailableTemplate,
             500,
             true,
@@ -107,7 +137,13 @@ const agentMsgCase = (type, msg) => {
       break;
     case "ChatEstablished":
       agentName = msg.name;
-      takeBotMsg("bot-msg hcp", agentName + agentJoinedMsg, 500, true, "text");
+      takeBotMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp",
+        agentName + agentJoinedMsg,
+        500,
+        true,
+        "text"
+      );
       setTimeout(() => {
         userInputsAction("salesorceMsg", userResponsesPlaceholder);
       }, 1000);
@@ -117,28 +153,62 @@ const agentMsgCase = (type, msg) => {
       break;
     case "ChatEnded":
       revokeUserInputAction();
-      takeBotIconMsg("bot-msg icon-delay", thankYouMsg, 500, true, "text");
+      takeBotIconMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+        thankYouMsg,
+        500,
+        true,
+        "text"
+      );
       break;
   }
 };
 
 const agentOnline = () => {
   if (previousChatRequest === 0) {
-    takeBotIconMsg("bot-msg icon-delay", connectingMsg, 500, true, "text");
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      connectingMsg,
+      500,
+      true,
+      "text"
+    );
   }
   previousChatRequest = previousChatRequest + 1;
 };
 
 const agentOffline = () => {
-  takeBotIconMsg("bot-msg icon-delay", nonWorkingHoursMsg, 500, true, "text");
+  takeBotIconMsg(
+    "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+    nonWorkingHoursMsg,
+    500,
+    true,
+    "text"
+  );
   setTimeout(() => {
-    takeBotMsg("bot-msg hcp", nonWorkingHoursTemplate, 500, true, "html");
+    takeBotMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp",
+      nonWorkingHoursTemplate,
+      500,
+      true,
+      "html"
+    );
   }, 2000);
 };
 
-revokeUserInputAction();
-startChat();
-
 const closeTakebot = () => {
-  alert("Close!");
+  botui.message.removeAll();
+  document.getElementById("takeda-mi-chatbot-container").style.display = "none";
+  document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =
+    "block";
+};
+
+const openTakeBot = () => {
+  botui.message.removeAll();
+  document.getElementById("takeda-mi-chatbot-container").style.display =
+    "block";
+  document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =
+    "none";
+  revokeUserInputAction();
+  startChat();
 };

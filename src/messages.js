@@ -5,11 +5,11 @@ var nonHealthcareMsg =
 var verificationTemplate =
   "<span>" +
   verificationMsg +
-  "</span><div id='btn-div'><button id='hcp' class='btn-cls' onclick='healthcare()'>Yes</button><button id='hcp1' class='btn-cls' onclick='nonHealthcare()'>No</button></div>";
+  "</span><div id='takeda-mi-chatbot-btn-div'><button id='takeda-mi-chatbot-hcp' class='takeda-mi-chatbot-btn-cls' onclick='healthcare()'>Yes</button><button id='takeda-mi-chatbot-hcp1' class='takeda-mi-chatbot-btn-cls' onclick='nonHealthcare()'>No</button></div>";
 var nonHealthcareTemplate =
   "<div>" +
   nonHealthcareMsg +
-  " <a class='med-info-link' href='https://www.takedaoncology.com/en/' target='_blank'>www.takedaoncology.com</a></div>";
+  " <a class='takeda-mi-chatbot-med-info-link' href='https://www.takedaoncology.com/en/' target='_blank'>www.takedaoncology.com</a></div>";
 
 var firstNameMsg = "Please provide your First Name";
 var firstNamePlaceholder = "Please enter your First Name here";
