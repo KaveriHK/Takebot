@@ -113,6 +113,7 @@ const emailValidation = (value) => {
 
 const sessionTimeout = () => {
   if (sessionTimeOut) {
+    agentAvailable = false;
     userInfo = {
       fName: "",
       lName: "",

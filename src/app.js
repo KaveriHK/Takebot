@@ -197,6 +197,7 @@ const agentOffline = () => {
 };
 
 const closeTakebot = () => {
+  sessionTimeout();
   botui.message.removeAll();
   document.getElementById("takeda-mi-chatbot-container").style.display = "none";
   document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =

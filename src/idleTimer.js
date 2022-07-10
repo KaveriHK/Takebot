@@ -53,6 +53,7 @@ function fnIdleTimer() {
         true,
         "text"
       );
+      agentAvailable = false;
       revokeUserInputAction();
       sessionTimeout();
       clearInterval(timer);
