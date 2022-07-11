@@ -46,19 +46,22 @@ function fnIdleTimer() {
       //5 minutes//5min*60sec
       //alert('Your screen is inactive state for a long..!' + $("input[name=__RequestVerificationToken]").val());
       //window.location.reload();
-      takeBotIconMsg(
-        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
-        sessionTimeoutMsg,
-        500,
-        true,
-        "text"
-      );
-      agentAvailable = false;
-      revokeUserInputAction();
-      sessionTimeout();
-      clearInterval(timer);
-      removeCursor();
-      sessionTimeOut = true;
+      countOfSessionTimeOut++;
+      if (countOfSessionTimeOut == 1) {
+        takeBotIconMsg(
+          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+          sessionTimeoutMsg,
+          500,
+          true,
+          "text"
+        );
+        agentAvailable = false;
+        revokeUserInputAction();
+        sessionTimeout();
+        clearInterval(timer);
+        removeCursor();
+        sessionTimeOut = true;
+      }
     }
   }
 }

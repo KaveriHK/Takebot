@@ -17,3 +17,4 @@ var inputType = "";
 var previousChatRequest = 0;
 var sessionTimeOut;
 var isNonHealthcareUser;
+var countOfSessionTimeOut = 0;
