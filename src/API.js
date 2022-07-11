@@ -59,8 +59,8 @@ const getAgentAvaialbality = async () => {
       headers: headers,
     });
     const agentAvailableJSON = await agentAvailableReq.json();
-    //isWorkingHours = agentAvailableJSON.IsAgentWorking;
-    isWorkingHours = true;
+    isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    //isWorkingHours = true;
     agentAvailable = isWorkingHours;
     if (isWorkingHours) {
       setTimeout(() => {
