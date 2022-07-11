@@ -54,13 +54,14 @@ const getAgentAvaialbality = async () => {
   const headers = new Headers();
   headers.append("Authorization", "Bearer " + medInfoToken);
   try {
-    const agentAvailable = await fetch(agentAvailabilityURL, {
+    const agentAvailableReq = await fetch(agentAvailabilityURL, {
       method: "GET",
       headers: headers,
     });
-    const agentAvailableJSON = await agentAvailable.json();
-    isWorkingHours = agentAvailableJSON.IsAgentWorking;
-    //isWorkingHours = true;
+    const agentAvailableJSON = await agentAvailableReq.json();
+    //isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    isWorkingHours = true;
+    agentAvailable = isWorkingHours;
     if (isWorkingHours) {
       setTimeout(() => {
         takeBotIconMsg(

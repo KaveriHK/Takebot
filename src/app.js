@@ -34,6 +34,7 @@ const removeCursor = () => {
 };
 
 const nonHealthcare = () => {
+  isNonHealthcareUser = true;
   removeCursor();
   addHumanMsg("No");
   setTimeout(() => {
@@ -48,6 +49,7 @@ const nonHealthcare = () => {
 };
 
 const healthcare = () => {
+  isNonHealthcareUser = false;
   removeCursor();
   addHumanMsg("Yes");
   getToken(true);
@@ -197,15 +199,14 @@ const agentOffline = () => {
 };
 
 const closeTakebot = () => {
-  sessionTimeout();
-  botui.message.removeAll();
+  clear();
   document.getElementById("takeda-mi-chatbot-container").style.display = "none";
   document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =
     "block";
 };
 
 const openTakeBot = () => {
-  botui.message.removeAll();
+  clear();
   document.getElementById("takeda-mi-chatbot-container").style.display =
     "block";
   document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =

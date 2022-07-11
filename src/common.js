@@ -123,8 +123,15 @@ const sessionTimeout = () => {
     medInfoToken = "";
     chatSessionInfo = "";
     agentName = "";
-    agentAvailable = true;
     inputType = "";
     previousChatRequest = 0;
+    isWorkingHours = false;
   }
+};
+
+const clear = () => {
+  sessionTimeOut = true;
+  sessionTimeout();
+  sessionTimeOut = false;
+  botui.message.removeAll();
 };

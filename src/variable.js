@@ -8,11 +8,12 @@ var userInfo = {
   email: "",
 };
 
-var isWorkingHours = true;
+var isWorkingHours;
 var medInfoToken = "";
 var chatSessionInfo = "";
 var agentName;
-var agentAvailable = true;
+var agentAvailable;
 var inputType = "";
 var previousChatRequest = 0;
-var sessionTimeOut = false;
+var sessionTimeOut;
+var isNonHealthcareUser;
