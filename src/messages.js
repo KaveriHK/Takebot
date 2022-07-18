@@ -1,4 +1,4 @@
-var welcomeMsg = "Hello! Welcome to Takeda Chatbot.";
+var welcomeMsg = "Hello! Welcome to Takeda Live Chat.";
 var verificationMsg = "Please verify you are a Healthcare Professional (HCP)?";
 var nonHealthcareMsg =
   "This chatbot is only for Healthcare Professionals, please visit";
@@ -34,6 +34,6 @@ var agentsNotAvailableTemplate =
 var agentJoinedMsg = " our call centre agent, has joined the conversation.";
 var userResponsesPlaceholder = "Please type your responses here";
 var thankYouMsg =
-  "Thank you for connecting with Takeda Chatbot!, Have a good day";
+  "Thank you for connecting with Takeda Live Chat!, Have a good day";
 var emailErrorMsg = "Please provide a valid email address";
 var sessionTimeoutMsg = "Session has been Timed Out!";
