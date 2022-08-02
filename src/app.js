@@ -142,13 +142,13 @@ const agentMsgCase = (type, msg) => {
       takeBotMsg(
         "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp",
         agentName + agentJoinedMsg,
-        500,
-        true,
+        0,
+        false,
         "text"
       );
       setTimeout(() => {
         userInputsAction("salesorceMsg", userResponsesPlaceholder);
-      }, 1000);
+      }, 500);
       break;
     case "ChatMessage":
       addAgentMsg(msg.text);

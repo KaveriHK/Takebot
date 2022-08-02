@@ -61,8 +61,25 @@ const addAgentMsg = (content) => {
     });
 };
 
+function testInput(event) {
+  if (inputType == "fName" || inputType == "lName") {
+    var keycode = event.which ? event.which : event.keyCode;
+    if (
+      (keycode > 64 && keycode < 91) ||
+      (keycode > 96 && keycode < 123) ||
+      keycode == 8 ||
+      keycode == 13
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 const userInputsAction = (inType, placeholderText) => {
   inputType = inType;
+  $("#takeda-mi-chatbot-user-input").bind("keypress", testInput);
   document.getElementById("takeda-mi-chatbot-user-input").style.display =
     "block";
   //document.getElementsByClassName("input-container")[0].style.width = "98%";
