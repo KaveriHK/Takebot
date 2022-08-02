@@ -6,12 +6,19 @@ var credentials = {
   grant_type: "password",
 };
 
+// var baseURL =
+//   window.location.href === ""
+//     ? ""
+//     : "https://staging2.indegene.com/TakedaMedInfoCB/api/ChatbotService/";
+
 var baseURL =
   window.location.href === ""
     ? ""
-    : "https://staging2.indegene.com/TakedaMedInfoCB/api/ChatbotService/";
+    : "https://staging2.indegene.com/TakedaMedInfo/api/ChatbotService/";
 
-var TOKEN_API = "https://staging2.indegene.com/TakedaMedInfoCB/token";
+// var TOKEN_API = "https://staging2.indegene.com/TakedaMedInfoCB/token";
+
+var TOKEN_API = "https://staging2.indegene.com/TakedaMedInfo/token";
 
 var payload = {
   organizationId: "00D7j0000004YQs",
