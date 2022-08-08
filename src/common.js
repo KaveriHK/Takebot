@@ -184,7 +184,7 @@ const emailValidation = (value) => {
 };
 
 const sessionTimeout = () => {
-  if (sessionTimeOut) {
+  if (isSessionTimeOut) {
     agentAvailable = false;
     userInfo = {
       fName: "",
@@ -202,9 +202,9 @@ const sessionTimeout = () => {
 };
 
 const clear = () => {
-  sessionTimeOut = true;
+  isSessionTimeOut = true;
   sessionTimeout();
-  sessionTimeOut = false;
+  isSessionTimeOut = false;
   botui.message.removeAll();
 };
 

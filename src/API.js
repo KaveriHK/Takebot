@@ -70,7 +70,8 @@ const getAgentAvaialbality = async () => {
       headers: headers,
     });
     const agentAvailableJSON = await agentAvailableReq.json();
-    isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    //isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    isWorkingHours = true;
     //...for debugging in non-working hours...
     if (
       typeof fnGetURLQueryString !== "undefined" &&
