@@ -13,12 +13,10 @@
   border: 3px solid white;
   border: none;
 }
-.takeda-mi-chatbot-close-block {
-  text-align: right !important;
-}
 .takeda-mi-chatbot-chat-container {
   width: 100%;
 }
+
 .takeda-mi-chatbot-chat-text {
   text-align: left;
   letter-spacing: 0px;
@@ -27,9 +25,14 @@
   font-family: "Open Sans";
   font-size: 20px;
 }
-.takeda-mi-chatbot-close-block {
+.takeda-mi-chatbot-close-icon {
+  position: absolute;
   font-size: 30px;
   cursor: pointer;
+  color: #ffffff;
+  right: 10px;
+  top: 10px;
+  z-index: 9;
 }
 
 .takeda-mi-chatbot-chat-block {
@@ -47,7 +50,7 @@
 .takeda-mi-chatbot-user-input-block {
   background-color: #ffff;
   display: block;
-  height: 9vh;
+  height: 53px;
 }
 
 .takeda-mi-chatbot-user-input {
@@ -69,9 +72,9 @@
 .takeda-mi-chatbot-email-error {
   color: red;
   font-size: 12px;
-  position:absolute;
-  padding-left:1rem;
-  bottom:-1px;
+  position: absolute;
+  padding-left: 1rem;
+  bottom: -1px;
 }
 
 .takeda-mi-chatbot-img-msg {
@@ -162,7 +165,6 @@
   color: #da5283;
 }
 
-
 .takeda-mi-chatbot-agent {
   text-align: left;
   letter-spacing: 0px;
@@ -212,7 +214,7 @@
   right: -45px;
   transition: opacity 0.3s;
   font-style: oblique;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 15px;
   font-weight: bold;
 }
@@ -241,32 +243,48 @@
   background-color: #ffffff !important;
 }
 
-
 /* For Mobile View */
 @media only screen and (max-width: 600px) {
   .takeda-mi-chatbot-chat-outside-icon {
-      bottom: 30px;
+    bottom: 0px;
+  }
+  .takeda-mi-chatbot-chat-outside-icon > img {
+    width: 100%;
+    position: relative;
+    right: 20px;
+  }
+  .takeda-mi-chatbot-chat-with-us {
+    right: 0px;
+    left: 10px;
   }
 }
 
 /* For Desktop View */
 @media screen and (min-width: 1024px) {
   .takeda-mi-chatbot-container {
-      width: 30% !important;
+    width: 30% !important;
   }
-/* .takeda-mi-chatbot-chat-outside-icon {
-      right:25px;
+  .takeda-mi-chatbot-chat-outside-icon {
+    right: 25px;
   }
-.takeda-mi-chatbot-chat-outside-icon > img {
-      width:150%;
-  } */
-
+  .takeda-mi-chatbot-chat-outside-icon > img {
+    width: 150%;
+  }
 }
 
 /* For Tablet View */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .takeda-mi-chatbot-container {
-      width: 40%;
+    width: 40%;
+  }
+  .takeda-mi-chatbot-chat-outside-icon > img {
+    width: 100%;
+    position: relative;
+    right: 20px;
+  }
+  .takeda-mi-chatbot-chat-with-us {
+    right: 0px;
+    left: 10px;
   }
 }
 
@@ -275,8 +293,8 @@
 }
 
 .takeda-mi-chatbot-container {
-  bottom: 2px;
-  right: 13px;
+  bottom: 0px;
+  right: 5px;
   position: fixed;
   z-index: 999;
 }

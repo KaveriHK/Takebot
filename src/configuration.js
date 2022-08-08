@@ -6,22 +6,19 @@ var credentials = {
   grant_type: "password",
 };
 
-// var baseURL =
-//   window.location.href === ""
-//     ? ""
-//     : "https://staging2.indegene.com/TakedaMedInfoCB/api/ChatbotService/";
-
 var baseURL =
   window.location.href === ""
     ? ""
     : "https://staging2.indegene.com/TakedaMedInfo/api/ChatbotService/";
 
-// var TOKEN_API = "https://staging2.indegene.com/TakedaMedInfoCB/token";
-
 var TOKEN_API = "https://staging2.indegene.com/TakedaMedInfo/token";
 
+TOKEN_API = window._baseUrl2 +"/token";
+//baseURL = $(location).attr('protocol') + "//" + $(location).attr('hostname') +":"+ $(location).attr('port') + "/api/ChatbotService/";
+baseURL = window._baseUrl2 + "/api/ChatbotService/";
+
 var payload = {
-  organizationId: "00D7j0000004YQs",
+  organizationId: "00D7j0000004YQs",//Org.Id will be overriden with the value taken from web.config.
   deploymentId: "5720a000000bnv2",
   buttonId: "5730a000000bo3X",
   sessionId: chatSessionInfo.id,

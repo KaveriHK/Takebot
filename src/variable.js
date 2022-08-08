@@ -3,9 +3,9 @@
 var botui = new BotUI("takeda-mi-chatbot-chat-container");
 
 var userInfo = {
-  fName: "",
-  lName: "",
-  email: "",
+    fName: "",
+    lName: "",
+    email: "",
 };
 
 var isWorkingHours;
@@ -15,6 +15,6 @@ var agentName;
 var agentAvailable;
 var inputType = "";
 var previousChatRequest = 0;
-var sessionTimeOut;
+var sessionTimeOut; //rename to isSessionTimeOut;
 var isNonHealthcareUser;
 var countOfSessionTimeOut = 0;

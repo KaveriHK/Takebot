@@ -37,44 +37,36 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-      <div class="takeda-mi-chatbot-chat-outside-icon m-4" id="takeda-mi-chatbot-chat-outside-icon" onclick="openTakeBot()">
-        <span class="takeda-mi-chatbot-chat-with-us">Chat with us!</span><br>
-        <img src="./assets/Bot_.svg"/>
-      </div>
-      <div class="container takeda-mi-chatbot-container mt-4" id="takeda-mi-chatbot-container">
-         <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-header">
-            <div class="row p-2">
-              <div class="col-4 col-sm-2 col-md-2 takeda-mi-chatbot-chat-icon-block p-0">
-                <img class="takeda-mi-chatbot-chat-icon" src="./assets/Bot_.svg" alt=""/>
-              </div>
-              <div class="col-5 col-sm-9 col-md-9 takeda-mi-chatbot-chat-label d-flex align-items-center">
-                <span class="takeda-mi-chatbot-chat-text">Takeda Live Chat</span>
-              </div>
-              <div class="col-3 col-sm-1 col-md-1 takeda-mi-chatbot-close-block p-0">
-                <span class="takeda-mi-chatbot-close-icon" onclick="closeTakebot()">&times</span>
-              </div>
-            </div>
+    <div class="takeda-mi-chatbot-chat-outside-icon m-4" id="takeda-mi-chatbot-chat-outside-icon" onclick="openTakeBot()">
+      <span class="takeda-mi-chatbot-chat-with-us">Chat with us!</span><br>
+      <img src="./assets/Bot_.svg" />
+    </div>
+    <div class="container takeda-mi-chatbot-container mt-4" id="takeda-mi-chatbot-container">
+      <span class="takeda-mi-chatbot-close-icon" onclick="closeTakebot()">&times</span>
+      <div class="row">
+          <div class="col-12 takeda-mi-chatbot-header d-flex flex-direction-column p-2 pl-3 align-items-center">
+              <img class="takeda-mi-chatbot-chat-icon" src="./assets/Bot_.svg" alt=""/>
+              <p class="takeda-mi-chatbot-chat-text mb-0 pl-2">Takeda Live Chat</p>
           </div>
-        </div>
-        <div class="row">
+      </div>
+      <div class="row">
           <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-chat-block">
-            <div class="row">
-              <div class="takeda-mi-chatbot-chat-container" id="takeda-mi-chatbot-chat-container">
-                <bot-ui></botui>
+              <div class="row">
+                  <div class="takeda-mi-chatbot-chat-container" id="takeda-mi-chatbot-chat-container">
+                      <bot-ui></bot-ui>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-user-input-block">
-            <div class="row">
-              <input type="text" class="takeda-mi-chatbot-user-input p-3" id="takeda-mi-chatbot-user-input" onchange="userInput(this.value)"/>
-              <span id="takeda-mi-chatbot-email-error" class="takeda-mi-chatbot-email-error"></span>
-            </div>
-          </div>
-        </div>
       </div>
+      <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-user-input-block">
+              <div class="row">
+                  <input type="text" class="takeda-mi-chatbot-user-input p-3" id="takeda-mi-chatbot-user-input" onchange="userInput(this.value)" />
+                  <span id="takeda-mi-chatbot-email-error" class="takeda-mi-chatbot-email-error"></span>
+              </div>
+          </div>
+      </div>
+    </div>
        <!--# Javascript Files-->
        <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
