@@ -54,7 +54,7 @@
 }
 
 .takeda-mi-chatbot-user-input {
-  width: 100%;
+  width: 90%;
   font-size: 14px;
   text-align: left;
   letter-spacing: 0px;
@@ -133,7 +133,7 @@
 }
 
 .takeda-mi-chatbot-cursor {
-  cursor: none;
+  cursor: not-allowed !important;
 }
 .takeda-mi-chatbot-you {
   text-align: right;
@@ -297,4 +297,10 @@
   right: 5px;
   position: fixed;
   z-index: 999;
+}
+
+.takeda-mi-chatbot-send-icon {
+  transform: rotate(25deg);
+  margin-top: 10px;
+  cursor: pointer !important;
 }
