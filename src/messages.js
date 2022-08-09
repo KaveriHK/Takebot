@@ -43,3 +43,8 @@ var closeTakebotTemplate =
   "<span>Do you like to discontinue the conversation?</span><div id='takeda-mi-chatbot-btn-div'><button id='takeda-mi-chatbot-hcp' class='takeda-mi-chatbot-btn-cls' onclick='closeTakebotConfirmationRes(true)'>Yes</button><button id='takeda-mi-chatbot-hcp1' class='takeda-mi-chatbot-btn-cls' onclick='closeTakebotConfirmationRes(false);'>No</button></div>";
 var pageLeaveMsg =
   "Please confirm leaving the current window will clear the conversation history?";
+var reIntiateChatMsg = "Do you want to restart the chat again?.";
+var chatRestartTemplate =
+  "<span>" +
+  reIntiateChatMsg +
+  "</span><div id='takeda-mi-restart-chatbot-btn-div'><button id='takeda-mi-chatbot-restart-yes' class='takeda-mi-chatbot-restart-btn-cls' onclick='restartChatBot()'>Yes</button><button id='takeda-mi-chatbot-restart-no' class='takeda-mi-chatbot-restart-btn-cls' onclick='dontRestartChatBot()'>No</button></div>";

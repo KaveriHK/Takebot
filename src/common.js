@@ -134,8 +134,8 @@ const userInputsAction = (inType, placeholderText) => {
     document.getElementById("takeda-mi-chatbot-user-input").minLength =
       inType === "email" ? "10" : "1";
   } else {
-    document.getElementById("takeda-mi-chatbot-user-input").maxLength = "";
-    document.getElementById("takeda-mi-chatbot-user-input").minLength = "";
+    document.getElementById("takeda-mi-chatbot-user-input").maxLength = "3000";
+    document.getElementById("takeda-mi-chatbot-user-input").minLength = "1";
   }
 };
 
@@ -155,6 +155,8 @@ const revokeUserInputAction = () => {
 
 const getUserInfo = (value) => {
   userInfo[inputType] = value.trim();
+  sessionInfo[inputType] = value.trim();
+  setSessionInformation();
   revokeUserInputAction();
   addHumanMsg(value.trim());
 };
@@ -184,28 +186,29 @@ const emailValidation = (value) => {
 };
 
 const sessionTimeout = () => {
-  if (isSessionTimeOut) {
-    agentAvailable = false;
-    userInfo = {
-      fName: "",
-      lName: "",
-      email: "",
-    };
+  agentAvailable = false;
+  userInfo = {
+    fName: "",
+    lName: "",
+    email: "",
+  };
 
-    medInfoToken = "";
-    chatSessionInfo = "";
-    agentName = "";
-    inputType = "";
-    previousChatRequest = 0;
-    isWorkingHours = false;
-  }
+  medInfoToken = "";
+  chatSessionInfo = "";
+  agentName = "";
+  inputType = "";
+  previousChatRequest = 0;
+  isWorkingHours = false;
+  isNonHealthcareUser = "";
+  isChatRestarted = false;
 };
 
 const clear = () => {
-  isSessionTimeOut = true;
   sessionTimeout();
   isSessionTimeOut = false;
   botui.message.removeAll();
+  removeSessionInformation();
+  countOfSessionTimeOut = 0;
 };
 
 const consoleLog = (data) => {
@@ -226,6 +229,26 @@ const scrollToElementView = (clsName) => {
     //     block: "end",
     //     inline: "nearest",
     //   });
-    element[0].scrollIntoView(true);
+    element[element.length - 1].scrollIntoView(true);
   }, 2100);
+};
+
+const setSessionInformation = () => {
+  localStorage.setItem(
+    "takeda-mi-chatbot-session-information",
+    JSON.stringify(sessionInfo)
+  );
+};
+const getSessionInformation = () => {
+  const sessionDetails = localStorage.getItem(
+    "takeda-mi-chatbot-session-information"
+  );
+  if (sessionDetails != undefined && sessionDetails != null) {
+    return JSON.parse(sessionDetails);
+  }
+  return false;
+};
+
+const removeSessionInformation = () => {
+  localStorage.removeItem("takeda-mi-chatbot-session-information");
 };

@@ -47,28 +47,27 @@ function fnIdleTimer() {
       //alert('Your screen is inactive state for a long..!' + $("input[name=__RequestVerificationToken]").val());
       //window.location.reload();
       countOfSessionTimeOut++;
-      if (countOfSessionTimeOut == 1) {
-        takeBotIconMsg(
-          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
-          sessionTimeoutMsg,
-          500,
-          true,
-          "text"
-        );
-        agentAvailable = false;
-        revokeUserInputAction();
-        sessionTimeout();
-        clearInterval(timer);
-        removeCursor();
-        isSessionTimeOut = true;
-
-        dataLayer.push({
-          event: "sessiontimeout_chat",
-          action: "expiry",
-          label: "session time out chat",
-          category: "chatbot",
-        });
-      }
+      //if (countOfSessionTimeOut == 1) {
+      takeBotIconMsg(
+        "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+        sessionTimeoutMsg,
+        500,
+        true,
+        "text"
+      );
+      sessionTimeout();
+      isSessionTimeOut = true;
+      revokeUserInputAction();
+      clearInterval(timer);
+      removeCursor();
+      canRestartChat();
+      dataLayer.push({
+        event: "sessiontimeout_chat",
+        action: "expiry",
+        label: "session time out chat",
+        category: "chatbot",
+      });
+      //}
     }
   }
 }

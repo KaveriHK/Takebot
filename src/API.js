@@ -70,8 +70,8 @@ const getAgentAvaialbality = async () => {
       headers: headers,
     });
     const agentAvailableJSON = await agentAvailableReq.json();
-    //isWorkingHours = agentAvailableJSON.IsAgentWorking;
-    isWorkingHours = true;
+    isWorkingHours = agentAvailableJSON.IsAgentWorking;
+    //isWorkingHours = true;
     //...for debugging in non-working hours...
     if (
       typeof fnGetURLQueryString !== "undefined" &&
@@ -82,18 +82,11 @@ const getAgentAvaialbality = async () => {
     //...
     agentAvailable = isWorkingHours;
     if (isWorkingHours) {
-      setTimeout(() => {
-        takeBotIconMsg(
-          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
-          firstNameMsg,
-          500,
-          true,
-          "text"
-        );
-        setTimeout(() => {
-          userInputsAction("fName", firstNamePlaceholder);
-        }, 2000);
-      }, 1000);
+      if (isChatRestarted) {
+        checkSessionStoredValue();
+      } else {
+        startUserInputMethod(firstNameMsg, firstNamePlaceholder, "fName", 1000);
+      }
     } else {
       agentOffline();
     }
@@ -109,6 +102,54 @@ const getAgentAvaialbality = async () => {
     errorTrackOnDatalayer();
     return;
   }
+};
+
+const checkSessionStoredValue = () => {
+  if (
+    sessionInfo.email &&
+    (sessionInfo.email !== "" ||
+      sessionInfo.email !== null ||
+      sessionInfo.email !== undefined)
+  ) {
+    userInfo.fName = sessionInfo.fName;
+    userInfo.lName = sessionInfo.lName;
+    userInfo.email = sessionInfo.email;
+    getTokenChatAPI(false);
+  } else if (
+    sessionInfo.lName &&
+    (sessionInfo.lName !== "" ||
+      sessionInfo.lName !== null ||
+      sessionInfo.lName !== undefined)
+  ) {
+    userInfo.fName = sessionInfo.fName;
+    userInfo.lName = sessionInfo.lName;
+    startUserInputMethod(emailMsg, emailMsgPlaceholder, "email", 1000);
+  } else if (
+    sessionInfo.fName &&
+    (sessionInfo.fName !== "" ||
+      sessionInfo.fName !== null ||
+      sessionInfo.fName !== undefined)
+  ) {
+    userInfo.fName = sessionInfo.fName;
+    startUserInputMethod(lastNameMsg, lastNamePlaceholder, "lName", 1000);
+  } else if (sessionInfo.hcp) {
+    startUserInputMethod(firstNameMsg, firstNamePlaceholder, "fName", 1000);
+  }
+};
+
+const startUserInputMethod = (msg, placeholder, inType, timeoutDelay) => {
+  setTimeout(() => {
+    takeBotIconMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+      msg,
+      500,
+      true,
+      "text"
+    );
+    setTimeout(() => {
+      userInputsAction(inType, placeholder);
+    }, 2000);
+  }, timeoutDelay);
 };
 
 const setHeaders = () => {

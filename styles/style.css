@@ -116,7 +116,8 @@
   padding: 10px 10px 10px 0px;
 }
 
-.takeda-mi-chatbot-btn-cls {
+.takeda-mi-chatbot-btn-cls,
+.takeda-mi-chatbot-restart-btn-cls {
   background: #da5283 0% 0% no-repeat padding-box;
   opacity: 1;
   text-align: right;

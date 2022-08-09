@@ -34,6 +34,19 @@ const verifyHCP = () => {
   }, 2000);
 };
 
+const verifyHCPRestart = () => {
+  setTimeout(() => {
+    takeBotMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp takeda-mi-chatbot-restart-verify pt-0",
+      verificationTemplate,
+      500,
+      true,
+      "html"
+    );
+    scrollToElementView("takeda-mi-chatbot-restart-verify");
+  }, 2000);
+};
+
 const removeCursor = () => {
   if (document.getElementById("takeda-mi-chatbot-hcp") != null) {
     var btn = document.getElementById("takeda-mi-chatbot-hcp");
@@ -45,6 +58,20 @@ const removeCursor = () => {
     btn.classList.add("takeda-mi-chatbot-cursor");
     btn1.classList.add("takeda-mi-chatbot-cursor");
     div.classList.add("takeda-mi-chatbot-cursor");
+  }
+};
+
+const restartRemoveCursor = () => {
+  if (isSessionTimeOut) {
+    var rbtn = document.getElementById("takeda-mi-chatbot-restart-yes");
+    var rbtn1 = document.getElementById("takeda-mi-chatbot-restart-no");
+    var rdiv = document.getElementById("takeda-mi-restart-chatbot-btn-div");
+    rbtn.disabled = true;
+    rbtn1.disabled = true;
+    rdiv.disabled = true;
+    rbtn.classList.add("takeda-mi-chatbot-cursor");
+    rbtn1.classList.add("takeda-mi-chatbot-cursor");
+    rdiv.classList.add("takeda-mi-chatbot-cursor");
   }
 };
 
@@ -73,6 +100,8 @@ const nonHealthcare = () => {
 const healthcare = () => {
   isBotOpen = true;
   isNonHealthcareUser = false;
+  sessionInfo.hcp = true;
+  setSessionInformation();
   removeCursor();
   addHumanMsg("Yes");
   getTokenChatAPI(true);
@@ -98,31 +127,13 @@ const userInput = (value) => {
     case "fName":
       if (testInput(value)) {
         getUserInfo(value);
-        takeBotIconMsg(
-          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
-          lastNameMsg,
-          500,
-          true,
-          "text"
-        );
-        setTimeout(() => {
-          userInputsAction("lName", lastNamePlaceholder);
-        }, 2000);
+        startUserInputMethod(lastNameMsg, lastNamePlaceholder, "lName", 0);
       }
       break;
     case "lName":
       if (testInput(value)) {
         getUserInfo(value);
-        takeBotIconMsg(
-          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
-          emailMsg,
-          500,
-          true,
-          "text"
-        );
-        setTimeout(() => {
-          userInputsAction("email", emailMsgPlaceholder);
-        }, 2000);
+        startUserInputMethod(emailMsg, emailMsgPlaceholder, "email", 0);
       }
       break;
     case "email":
@@ -132,7 +143,9 @@ const userInput = (value) => {
       }
       break;
     case "salesorceMsg":
-      liveChat(value);
+      if (value.trim().length > 0) {
+        liveChat(value);
+      }
       break;
   }
 };
@@ -241,32 +254,29 @@ const agentOffline = () => {
   }, 2000);
 };
 
-const closeTakebot = () => {
-  const closeBot = () => {
-    isBotOpen = false;
-    clear(); //botui.message.removeAll();
-    document.getElementById("takeda-mi-chatbot-container").style.display =
-      "none";
+const closeBot = () => {
+  isBotOpen = false;
+  clear(); //botui.message.removeAll();
+  document.getElementById("takeda-mi-chatbot-container").style.display = "none";
+  document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =
+    "block";
+  dataLayer.push({
+    event: "end_chat",
+    action: "click",
+    label: "end chat",
+    category: "chatbot",
+  });
+  //pavan: no chat icon will be displayed, instead, using click here link to open the chat window
+  if (
+    window.location.href.toLowerCase().indexOf("contacttakedamedicalaffairs") >
+    0
+  )
     document.getElementById(
       "takeda-mi-chatbot-chat-outside-icon"
-    ).style.display = "block";
-    dataLayer.push({
-      event: "end_chat",
-      action: "click",
-      label: "end chat",
-      category: "chatbot",
-    });
-    //pavan: no chat icon will be displayed, instead, using click here link to open the chat window
-    if (
-      window.location.href
-        .toLowerCase()
-        .indexOf("contacttakedamedicalaffairs") > 0
-    )
-      document.getElementById(
-        "takeda-mi-chatbot-chat-outside-icon"
-      ).style.display = "none";
-  };
+    ).style.display = "none";
+};
 
+const closeTakebot = () => {
   if (isBotOpen) {
     if (confirm("Do you want to end the conversation with Takeda Live Chat?"))
       closeBot();
@@ -283,4 +293,61 @@ const openTakeBot = () => {
     "none";
   revokeUserInputAction();
   startChat();
+};
+
+const canRestartChat = () => {
+  setTimeout(() => {
+    takeBotMsg(
+      "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-hcp takeda-mi-restart-chat-msg",
+      chatRestartTemplate,
+      500,
+      true,
+      "html"
+    );
+    scrollToElementView("takeda-mi-restart-chat-msg");
+  }, 2500);
+};
+
+const restartChatBot = () => {
+  restartRemoveCursor();
+  isChatRestarted = true;
+  addHumanMsg("Yes");
+  if (!getSessionInformation()) {
+    // No Session Info values are stored in local stoarge
+    takeBotIcon();
+    setTimeout(() => {
+      verifyHCPRestart();
+    }, 10);
+  } else {
+    sessionInfo = getSessionInformation();
+    const isAllEmpty = Object.values(sessionInfo).every(
+      (x) => x === null || x === ""
+    );
+    if (isAllEmpty) {
+      takeBotIcon();
+      setTimeout(() => {
+        verifyHCPRestart();
+      }, 10);
+    } else {
+      if (sessionInfo.hcp == true) {
+        getTokenChatAPI(true);
+      }
+    }
+  }
+};
+
+const dontRestartChatBot = () => {
+  restartRemoveCursor();
+  isChatRestarted = false;
+  addHumanMsg("No");
+  takeBotIconMsg(
+    "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+    thankYouMsg,
+    1000,
+    true,
+    "text"
+  );
+  setTimeout(() => {
+    closeBot();
+  }, 8000);
 };

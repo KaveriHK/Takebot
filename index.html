@@ -61,9 +61,8 @@
       <div class="row">
           <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-user-input-block">
               <div class="row">
-                  <input type="text" class="takeda-mi-chatbot-user-input p-3" id="takeda-mi-chatbot-user-input" 
-                    onchange="userInput(this.value)" />
-                    <img src="./assets/send--alt--filled.svg" alt="" height="30px" width="30px" id="takeda-mi-chatbot-send-icon" 
+                <input type="text" class="takeda-mi-chatbot-user-input p-3" id="takeda-mi-chatbot-user-input" autocomplete="off" onchange="userInput(this.value)"/>
+                 <img src="./assets/send--alt--filled.svg" alt="" height="30px" width="30px" id="takeda-mi-chatbot-send-icon" 
                     class="takeda-mi-chatbot-send-icon" onclick="userInput(document.getElementById('takeda-mi-chatbot-user-input').value)"/>
                   <span id="takeda-mi-chatbot-email-error" class="takeda-mi-chatbot-email-error"></span>
               </div>

@@ -18,3 +18,9 @@ var previousChatRequest = 0;
 var isSessionTimeOut;
 var isNonHealthcareUser;
 var countOfSessionTimeOut = 0;
+var sessionInfo = {
+  ...userInfo,
+  hcp: undefined,
+};
+var isChatRestarted;
+var isBotOpen;
