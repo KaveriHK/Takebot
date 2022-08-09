@@ -171,21 +171,25 @@ const agentMsgCase = (type, msg) => {
       } else {
         if (previousChatRequest === 1) {
           takeBotIconMsg(
-            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay takeda-mi-chatbot-apology-msg",
             apologyMsg,
             500,
             true,
             "text"
           );
+          setTimeout(() => {
+            scrollToElementView("takeda-mi-chatbot-apology-msg");
+          }, 10);
           getTokenChatAPI(false);
         } else {
           takeBotIconMsg(
-            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay takeda-mi-chatbot-agents-not-available",
             agentsNotAvailableTemplate,
             500,
             true,
             "html"
           );
+          scrollToElementView("takeda-mi-chatbot-agents-not-available");
         }
       }
       break;
