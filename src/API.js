@@ -82,6 +82,7 @@ const getAgentAvaialbality = async () => {
     //...
     agentAvailable = isWorkingHours;
     if (isWorkingHours) {
+      isBotOpen = true;
       if (isChatRestarted) {
         checkSessionStoredValue();
       } else {
@@ -170,7 +171,7 @@ const createChatSession = async () => {
       headers: header,
     });
     const chatSessionJSON = await saleforceSession.json();
-    consoleLog(chatSessionJSON);
+    //consoleLog(chatSessionJSON);
     chatSessionInfo = JSON.parse(chatSessionJSON);
     createChatInitRequest();
     messagePoll();
@@ -213,7 +214,7 @@ const createChatInitRequest = async () => {
       body: JSON.stringify(payload),
     });
     chatReq1 = await chatReq.json();
-    consoleLog("createChatInitRequest:" + chatReq1);
+    //consoleLog("createChatInitRequest:" + chatReq1);
   } catch (error) {
     takeBotIconMsg(
       "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
@@ -239,7 +240,7 @@ const messagePoll = async () => {
       headers: headers,
     });
     systemMessages = await saleforcemessages.json();
-    consoleLog("messagePull:" + systemMessages);
+    //consoleLog("messagePull:" + systemMessages);
     readMessages(systemMessages);
     if (agentAvailable) {
       messagePoll();
@@ -265,7 +266,7 @@ const sendChatMessage = async (userRes) => {
       body: JSON.stringify(payload),
     });
     chatReq1 = await chatReq.json();
-    consoleLog("sendChatMessage:" + chatReq1);
+    //consoleLog("sendChatMessage:" + chatReq1);
   } catch (error) {
     console.error(error);
   }

@@ -98,19 +98,18 @@ const nonHealthcare = () => {
 };
 
 const healthcare = () => {
-  isBotOpen = true;
-  isNonHealthcareUser = false;
-  sessionInfo.hcp = true;
-  setSessionInformation();
-  removeCursor();
-  addHumanMsg("Yes");
-  getTokenChatAPI(true);
-  dataLayer.push({
-    event: "chat_hcp_selfverify",
-    action: "click",
-    label: "Yes",
-    category: "chatbot",
-  });
+    isNonHealthcareUser = false;
+    sessionInfo.hcp = true;
+    setSessionInformation();
+    removeCursor();
+    addHumanMsg("Yes");
+    getTokenChatAPI(true);
+    dataLayer.push({
+        event: "chat_hcp_selfverify",
+        action: "click",
+        label: "Yes",
+        category: "chatbot",
+    });
 };
 
 const linkClick = (e) => {
@@ -258,9 +257,23 @@ const agentOffline = () => {
   }, 2000);
 };
 
+const closeConfirmPopup = () => {
+  document.getElementById("takeda-mi-chatbot-close-popup").style.display =
+    "none";
+  document
+    .getElementById("takeda-mi-chatbot-header-block")
+    .classList.remove("takeda-mi-chatbot-backdrop2");
+  document
+    .getElementById("takeda-mi-chatbot-chat-container")
+    .classList.remove("takeda-mi-chatbot-backdrop1");
+  document
+    .querySelector(".takeda-mi-chatbot-close-icon")
+    .classList.remove("takeda-mi-chatbot-backdrop1");
+};
 const closeBot = () => {
   isBotOpen = false;
   clear(); //botui.message.removeAll();
+  closeConfirmPopup();
   document.getElementById("takeda-mi-chatbot-container").style.display = "none";
   document.getElementById("takeda-mi-chatbot-chat-outside-icon").style.display =
     "block";
@@ -282,8 +295,19 @@ const closeBot = () => {
 
 const closeTakebot = () => {
   if (isBotOpen) {
-    if (confirm("Do you want to end the conversation with Takeda Live Chat?"))
-      closeBot();
+    document.getElementById("takeda-mi-chatbot-close-popup").style.display =
+      "block";
+    document
+      .getElementById("takeda-mi-chatbot-header-block")
+      .classList.add("takeda-mi-chatbot-backdrop2");
+    document
+      .getElementById("takeda-mi-chatbot-chat-container")
+      .classList.add("takeda-mi-chatbot-backdrop1");
+	document
+    .querySelector(".takeda-mi-chatbot-close-icon")
+    .classList.add("takeda-mi-chatbot-backdrop1");
+    // if (confirm("Do you want to end the conversation with Takeda Live Chat?"))
+    //   closeBot();
   } else {
     closeBot();
   }

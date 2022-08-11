@@ -43,7 +43,7 @@
     </div>
     <div class="container takeda-mi-chatbot-container mt-4" id="takeda-mi-chatbot-container">
       <span class="takeda-mi-chatbot-close-icon" onclick="closeTakebot()">&times</span>
-      <div class="row">
+      <div class="row" id="takeda-mi-chatbot-header-block">
           <div class="col-12 takeda-mi-chatbot-header d-flex flex-direction-column p-2 pl-3 align-items-center">
               <img class="takeda-mi-chatbot-chat-icon" src="./assets/Bot_.svg" alt=""/>
               <p class="takeda-mi-chatbot-chat-text mb-0 pl-2">Takeda Live Chat</p>
@@ -52,6 +52,16 @@
       <div class="row">
           <div class="col-12 col-sm-12 col-md-12 takeda-mi-chatbot-chat-block">
               <div class="row">
+                 <!-- Takeda Mi Chatbot Close Confirm Popup -->
+                  <div class="takeda-mi-chatbot-close-popup" id="takeda-mi-chatbot-close-popup">
+                    <span class="takeda-mi-chatbot-popup-close-icon" onclick="closeConfirmPopup()">&times</span>
+                    <div class="takeda-mi-chatbot-confirm-exit">
+                      <h5>Confirm Exit?</h5>
+                      <p class="takeda-mi-chatbot-paragragh">On exiting, all chat history will be cleared</p>
+                      <button class="m-4 p-2 takeda-mi-chatbot-comfirm-btn" type="button" onclick="closeBot()">Confirm</button>
+                    </div>
+                  </div>
+                  <!-- Takeda Mi Chatbot bot UI -->
                   <div class="takeda-mi-chatbot-chat-container" id="takeda-mi-chatbot-chat-container">
                       <bot-ui></bot-ui>
                   </div>
