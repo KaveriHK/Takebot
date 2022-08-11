@@ -49,9 +49,10 @@ function fnIdleTimer() {
       countOfSessionTimeOut++;
       //if (countOfSessionTimeOut == 1) {
       if (
-        chatSessionInfo != "" ||
-        chatSessionInfo != undefinded ||
-        chatSessionInfo != null
+        chatSessionInfo &&
+        (chatSessionInfo !== "" ||
+          chatSessionInfo !== undefined ||
+          chatSessionInfo !== null)
       ) {
         takedaChatEnd();
       }
