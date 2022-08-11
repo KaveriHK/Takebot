@@ -48,6 +48,13 @@ function fnIdleTimer() {
       //window.location.reload();
       countOfSessionTimeOut++;
       //if (countOfSessionTimeOut == 1) {
+      if (
+        chatSessionInfo != "" ||
+        chatSessionInfo != undefinded ||
+        chatSessionInfo != null
+      ) {
+        takedaChatEnd();
+      }
       takeBotIconMsg(
         "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
         sessionTimeoutMsg,

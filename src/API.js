@@ -271,3 +271,24 @@ const sendChatMessage = async (userRes) => {
     console.error(error);
   }
 };
+
+const takedaChatEnd = async () => {
+  const headers = new Headers();
+  headers.append("Authorization", "Bearer " + medInfoToken);
+  headers.append("Content-Type", "text/plain");
+  headers.append("version", "54");
+  headers.append("affinity", chatSessionInfo.affinityToken);
+  headers.append("sessionkey", chatSessionInfo.key);
+  const chatEndURL = new URL(baseURL + "ChatEnd");
+  const payload = { reason: "client" };
+  try {
+    const chatReq = await fetch(chatEndURL, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload),
+    });
+    chatReq1 = await chatReq.json();
+  } catch (error) {
+    console.error("Error(sendChatMessage): " + error);
+  }
+};
