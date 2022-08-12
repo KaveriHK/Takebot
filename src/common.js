@@ -199,7 +199,7 @@ const sessionTimeout = () => {
   inputType = "";
   previousChatRequest = 0;
   isWorkingHours = false;
-  isNonHealthcareUser = "";
+  isNonHealthcareUser = undefined;
   isChatRestarted = false;
 };
 

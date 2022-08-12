@@ -42,7 +42,8 @@ function fnIdleTimer() {
     //     if (document.querySelector(".timertext") != null)
     //       document.querySelector(".timertext").style.display = "block";
 
-    if (currSeconds > 5 * 60 && !isNonHealthcareUser) {
+    console.log(currSeconds);
+    if (currSeconds > 5 * 60 && !isNonHealthcareUser && !isSessionTimeOut) {
       //5 minutes//5min*60sec
       //alert('Your screen is inactive state for a long..!' + $("input[name=__RequestVerificationToken]").val());
       //window.location.reload();

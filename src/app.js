@@ -98,18 +98,18 @@ const nonHealthcare = () => {
 };
 
 const healthcare = () => {
-    isNonHealthcareUser = false;
-    sessionInfo.hcp = true;
-    setSessionInformation();
-    removeCursor();
-    addHumanMsg("Yes");
-    getTokenChatAPI(true);
-    dataLayer.push({
-        event: "chat_hcp_selfverify",
-        action: "click",
-        label: "Yes",
-        category: "chatbot",
-    });
+  isNonHealthcareUser = false;
+  sessionInfo.hcp = true;
+  setSessionInformation();
+  removeCursor();
+  addHumanMsg("Yes");
+  getTokenChatAPI(true);
+  dataLayer.push({
+    event: "chat_hcp_selfverify",
+    action: "click",
+    label: "Yes",
+    category: "chatbot",
+  });
 };
 
 const linkClick = (e) => {
@@ -303,9 +303,9 @@ const closeTakebot = () => {
     document
       .getElementById("takeda-mi-chatbot-chat-container")
       .classList.add("takeda-mi-chatbot-backdrop1");
-	document
-    .querySelector(".takeda-mi-chatbot-close-icon")
-    .classList.add("takeda-mi-chatbot-backdrop1");
+    document
+      .querySelector(".takeda-mi-chatbot-close-icon")
+      .classList.add("takeda-mi-chatbot-backdrop1");
     // if (confirm("Do you want to end the conversation with Takeda Live Chat?"))
     //   closeBot();
   } else {
@@ -339,6 +339,7 @@ const canRestartChat = () => {
 const restartChatBot = () => {
   restartRemoveCursor();
   isChatRestarted = true;
+  isSessionTimeOut = false;
   addHumanMsg("Yes");
   if (!getSessionInformation()) {
     // No Session Info values are stored in local stoarge
