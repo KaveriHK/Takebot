@@ -48,3 +48,4 @@ var chatRestartTemplate =
   "<span>" +
   reIntiateChatMsg +
   "</span><div id='takeda-mi-restart-chatbot-btn-div'><button id='takeda-mi-chatbot-restart-yes' class='takeda-mi-chatbot-restart-btn-cls' onclick='restartChatBot()'>Yes</button><button id='takeda-mi-chatbot-restart-no' class='takeda-mi-chatbot-restart-btn-cls' onclick='dontRestartChatBot()'>No</button></div>";
+var serverError = "Internal server error, please come back after some time!";

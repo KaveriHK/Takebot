@@ -171,7 +171,6 @@ const createChatSession = async () => {
       headers: header,
     });
     const chatSessionJSON = await saleforceSession.json();
-    //consoleLog(chatSessionJSON);
     chatSessionInfo = JSON.parse(chatSessionJSON);
     createChatInitRequest();
     messagePoll();
@@ -229,25 +228,101 @@ const createChatInitRequest = async () => {
 };
 
 const messagePoll = async () => {
+  messagePollData = "";
   const headers = setHeaders();
   headers.append("affinity", chatSessionInfo.affinityToken);
   headers.append("sessionkey", chatSessionInfo.key);
 
   const messagePollAPI = new URL(baseURL + "ChatSystemMessage");
-  try {
-    const saleforcemessages = await fetch(messagePollAPI, {
-      method: "GET",
-      headers: headers,
-    });
-    systemMessages = await saleforcemessages.json();
-    //consoleLog("messagePull:" + systemMessages);
-    readMessages(systemMessages);
-    if (agentAvailable) {
-      messagePoll();
-    }
-  } catch (error) {
-    console.log(error);
+  if (controller) {
+    controller.abort();
   }
+  controller = null;
+  signal = null;
+  controller = new AbortController();
+  signal = controller.signal;
+  if (pollingTimer > 0) {
+    clearInterval(pollingTimer);
+    pollingTimer = null;
+  }
+  currentSeconds = 0;
+  pollingTimer = setInterval(function () {
+    currentSeconds++;
+    if (currentSeconds > 15 && messagePollData == "") {
+      if (controller) {
+        controller.abort();
+      }
+      clearInterval(pollingTimer);
+      pollingTimer = null;
+      currentSeconds = 0;
+      if (agentAvailable) {
+        messagePoll();
+      }
+    }
+  }, 1000);
+  /** part of 504 prod issue */
+  // try {
+  //   const saleforcemessages = await fetch(messagePollAPI, {
+  //     method: "GET",
+  //     headers: headers,
+  //   });
+  //   systemMessages = await saleforcemessages.json();
+  //   //consoleLog("messagePull:" + systemMessages);
+  //   readMessages(systemMessages);
+  //   if (agentAvailable) {
+  //     messagePoll();
+  //   }
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  fetch(messagePollAPI, { method: "GET", headers: headers, signal })
+    .then(async (response) => {
+      const isJson = response.headers
+        .get("content-type")
+        ?.includes("application/json");
+      messagePollData = isJson ? await response.json() : null;
+      readMessages(messagePollData);
+      messagePollData = "";
+      controller = null;
+      signal = null;
+      setTimeout(() => {
+        if (agentAvailable) {
+          messagePoll();
+        }
+      }, 2000);
+      if (!response.ok) {
+        const error =
+          (messagePollData && messagePollData.message) || response.status;
+        if (response.status == 504) {
+          if (agentAvailable) {
+            messagePoll();
+          }
+        } else {
+          takeBotIconMsg(
+            "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+            serverError,
+            500,
+            true,
+            "text"
+          );
+          errorTrackOnDatalayer();
+        }
+        return Promise.reject(error);
+      }
+    })
+    .catch((apierror) => {
+      console.log("There was an error!", apierror.message);
+      if (!apierror.message.includes("The user aborted a request.")) {
+        takeBotIconMsg(
+          "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay",
+          serverError,
+          500,
+          true,
+          "text"
+        );
+        errorTrackOnDatalayer();
+      }
+    });
 };
 
 const sendChatMessage = async (userRes) => {

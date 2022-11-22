@@ -181,6 +181,7 @@ const agentMsgCase = (type, msg) => {
           }, 10);
           getTokenChatAPI(false);
         } else {
+          agentAvailable = false;
           takeBotIconMsg(
             "takeda-mi-chatbot-bot-msg takeda-mi-chatbot-icon-delay takeda-mi-chatbot-agents-not-available",
             agentsNotAvailableTemplate,
@@ -234,7 +235,7 @@ const agentOnline = () => {
       "text"
     );
   }
-  previousChatRequest = previousChatRequest + 1;
+  previousChatRequest++;
 };
 
 const agentOffline = () => {
@@ -271,6 +272,11 @@ const closeConfirmPopup = () => {
     .classList.remove("takeda-mi-chatbot-backdrop1");
 };
 const closeBot = () => {
+  if (agentAvailable && isWorkingHours) {
+    takedaChatEnd();
+  }
+  agentAvailable = false;
+  isWorkingHours = false;
   isBotOpen = false;
   clear(); //botui.message.removeAll();
   closeConfirmPopup();

@@ -24,3 +24,8 @@ var sessionInfo = {
 };
 var isChatRestarted;
 var isBotOpen;
+let controller = null;
+let signal = null;
+var messagePollData = "";
+let pollingTimer;
+let currentSeconds = 0;

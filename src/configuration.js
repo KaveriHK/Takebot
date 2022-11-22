@@ -91,7 +91,7 @@ var payload = {
     },
     {
       label: "Status",
-      value: "New",
+      value: "Open",
       entityMaps: [
         {
           entityName: "Case",
